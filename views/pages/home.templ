@@ -1,6 +1,8 @@
 package pages
 
 import (
+    "fmt"
+
     "github.com/vulan1999/go-todo-list/internal/model"
     "github.com/vulan1999/go-todo-list/views/layouts"
 )
@@ -22,9 +24,9 @@ templ Home(todos []model.Todo){
             <ul>
                 for _, todo := range todos{
                     if todo.Done {
-                        <li><s>{todo.Title}</s></li>
+                        <li id={fmt.Sprintf("todo-%d", todo.ID)}><s>{todo.Title}</s></li>
                     } else {
-                        <li>{ todo.Title }</li>
+                        <li id={fmt.Sprintf("todo-%d",todo.ID)}>{ todo.Title }</li>
                     }
                 } 
             </ul>

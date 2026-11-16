@@ -1,8 +1,11 @@
 package pages
 
-import "github.com/vulan1999/go-todo-list/views/layouts"
+import (
+    "github.com/vulan1999/go-todo-list/internal/model"
+    "github.com/vulan1999/go-todo-list/views/layouts"
+)
 
-templ Home(){
+templ Home(todos []model.Todo){
     @layouts.Base("Home - Todo List"){
         <section>
             <h2>My Todo List</h2>
@@ -17,9 +20,13 @@ templ Home(){
             </form>
 
             <ul>
-                <li>Learn Go</li>
-                <li>Learn Templ</li>
-                <li>Build Todo List</li>
+                for _, todo := range todos{
+                    if todo.Done {
+                        <li><s>{todo.Title}</s></li>
+                    } else {
+                        <li>{ todo.Title }</li>
+                    }
+                } 
             </ul>
         </section>
     }

@@ -12,7 +12,11 @@ templ Home(todos []model.Todo){
         <section>
             <h2>My Todo List</h2>
 
-            <form>
+            <form
+                hx-post="/todos"
+                hx-target="#todo-list"
+                hx-swap="beforeend"
+            >
                 <input
                     type="text"
                     name="title"
@@ -21,13 +25,15 @@ templ Home(todos []model.Todo){
                 <button type="submit">Add Task</button>
             </form>
 
-            <ul>
+            <ul id="todo-list">
                 for _, todo := range todos{
+                    <li id={fmt.Sprintf("todo-%d", todo.ID)}>
                     if todo.Done {
-                        <li id={fmt.Sprintf("todo-%d", todo.ID)}><s>{todo.Title}</s></li>
+                        <s>{todo.Title}</s>
                     } else {
-                        <li id={fmt.Sprintf("todo-%d",todo.ID)}>{ todo.Title }</li>
+                        { todo.Title }
                     }
+                    </li>
                 } 
             </ul>
         </section>

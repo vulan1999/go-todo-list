@@ -13,6 +13,10 @@ func main() {
 
 	mux.HandleFunc("GET /health", handler.Healthcheck)
 	mux.HandleFunc("GET /", handler.Home)
+	mux.Handle(
+		"GET /static/",
+		http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))),
+	)
 
 	server := &http.Server{
 		Addr:         ":8080",

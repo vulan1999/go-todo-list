@@ -12,6 +12,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /health", handler.Healthcheck)
+	mux.HandleFunc("GET /", handler.Home)
 
 	server := &http.Server{
 		Addr:         ":8080",

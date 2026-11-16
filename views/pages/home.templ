@@ -1,0 +1,25 @@
+package pages
+
+import "github.com/vulan1999/go-todo-list/views/layouts"
+
+templ Home(){
+    @layouts.Base("Home - Todo List")
+    <section>
+		<h2>My Todo List</h2>
+
+		<form>
+			<input
+				type="text"
+                name="title"
+				placeholder="Enter a new task..."
+			/>
+			<button type="submit">Add Task</button>
+		</form>
+
+		<ul>
+            <li>Learn Go</li>
+            <li>Learn Templ</li>
+            <li>Build Todo List</li>
+        </ul>
+	</section>
+}
